@@ -80,6 +80,11 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.PreparingToSend
                 throw new ArgumentNullException(nameof(notification));
             }
 
+            if (notification.AllUsers)
+            {
+                throw new InvalidOperationException("SyncAllUsersActivity is disabled");
+            }
+
             // Sync all users.
             await this.SyncAllUsers(notification.Id);
 
